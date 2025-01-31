@@ -32,7 +32,7 @@ struct CustomOTPTextField: View {
                 }
                 .keyboardType(.numberPad)
                 .frame(width: 65, height: 65)
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(size: 25, weight: .medium))
                 .background(Color(hex: "#5B5B5B"))  // Matching background color
                 .foregroundColor(.white)  // White text color
                 .accentColor(.clear)  // Disable cursor color

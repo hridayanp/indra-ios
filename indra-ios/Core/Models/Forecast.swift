@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Forecast: Identifiable, Decodable {
+struct ForecastPrev: Identifiable, Decodable {
     let dob: String
     let address: String
     let pin: Int
@@ -20,4 +20,19 @@ struct Forecast: Identifiable, Decodable {
     let locationId: Int
     let locationName: String
     let gender: String
+}
+
+
+struct Forecast: Identifiable {
+    let id = UUID() // Unique identifier
+    let date: String
+    let time: String
+    let info: [ForecastInfo]
+}
+
+struct ForecastInfo {
+    let type: String
+    let label: String
+    let value: String
+    let unit: String
 }

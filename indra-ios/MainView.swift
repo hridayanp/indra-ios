@@ -15,12 +15,15 @@ struct MainView: View {
         
         NavigationView {
             VStack {
+                
                 if let route = router.currentRoute {
+                    
                     switch route {
-                    case .authSelection(let tab):
-                        AuthSelectionView(defaultTab: tab)
-                    case .home:
-                        Text("Home Screen")
+                        case .authSelection(let tab):
+                            AuthSelectionView(defaultTab: tab)
+                        
+                        case .forecast:
+                            ForecastView()
                     }
                 } else {
                     AuthView()

@@ -45,7 +45,6 @@ class APIClient {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw APIError.invalidResponse
         }
-        
         // Return raw data and status code
         return (data, httpResponse.statusCode)
     }

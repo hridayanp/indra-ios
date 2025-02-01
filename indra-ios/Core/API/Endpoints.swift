@@ -14,5 +14,9 @@ struct Endpoints {
         static let login = "\(baseURL)/api/token"
         static let signup = "\(baseURL)/signup"
     }
+    
+    struct Forecast {
+        static let getForecasts = "\(baseURL)/users/api/farmer"
+    }
 }
 

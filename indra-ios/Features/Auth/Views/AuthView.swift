@@ -31,7 +31,7 @@ struct AuthView: View {
                 
                 
                 Button("Continue as Guest") {
-                    router.navigate(to: .home)
+                    router.navigate(to: .forecast)
                 }
                 .foregroundColor(.blue)
             }

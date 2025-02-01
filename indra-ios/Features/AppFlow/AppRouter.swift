@@ -10,6 +10,7 @@ import Foundation
 enum AppRoute {
     case authSelection(AuthTab)
     case forecast
+    case mainTabs
 }
 
 class AppRouter: ObservableObject {

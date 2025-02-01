@@ -16,7 +16,7 @@ struct BaseView<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color(hex: "#0B1D29") // Apply global background color
+            Color(hex: "#0B1D29") 
                 .edgesIgnoringSafeArea(.all)
             
             content // The actual screen content

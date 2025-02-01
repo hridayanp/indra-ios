@@ -22,6 +22,9 @@ struct MainView: View {
                         case .authSelection(let tab):
                             AuthSelectionView(defaultTab: tab)
                         
+                        case .mainTabs:  
+                            MainTabView()
+                        
                         case .forecast:
                             ForecastView()
                     }

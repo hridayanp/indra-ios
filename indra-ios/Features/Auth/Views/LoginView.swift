@@ -47,7 +47,7 @@ struct LoginView: View {
                             // Check if login is successful
                             if viewModel.isLoggedIn {
                                 // Navigate to ForecastView after successful login
-                                router.navigate(to: .forecast)
+                                router.navigate(to: .mainTabs)
                             }
                         }
                     },

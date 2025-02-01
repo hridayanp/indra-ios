@@ -11,6 +11,8 @@ import SwiftUI
 struct ForecastView: View {
     @StateObject private var viewModel = ForecastViewModel()
     
+    @EnvironmentObject var router: AppRouter
+    
     var body: some View {
         VStack {
             if viewModel.isLoading {
@@ -41,6 +43,20 @@ struct ForecastView: View {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
+            }
+            
+            // Logout button
+            Button(action: {
+                viewModel.logout()
+                router.navigate(to: .authSelection(.login))
+            }) {
+                Text("Logout")
+                    .fontWeight(.bold)
+                    .foregroundColor(.red)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
             }
         }
         .onAppear {

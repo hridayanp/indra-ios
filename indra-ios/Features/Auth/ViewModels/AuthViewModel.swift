@@ -49,9 +49,10 @@ class AuthViewModel: ObservableObject {
             storeUserDetails(user)
             isLoggedIn = true  // Set to true when login is successful
             
-            // Navigate to ForecastView after login
-            router?.navigate(to: .forecast)
+            
             isLoading = false
+            
+            
         }
         catch {
             errorMessage = error.localizedDescription

@@ -14,6 +14,8 @@ struct LoginView: View {
     
     @StateObject private var viewModel = AuthViewModel()
     
+    @EnvironmentObject var router: AppRouter
+    
     var body: some View {
         BaseView {
             VStack(spacing: 16) {
@@ -41,6 +43,12 @@ struct LoginView: View {
                     action: {
                         Task {
                             await viewModel.login(email: email, password: password)
+                            
+                            // Check if login is successful
+                            if viewModel.isLoggedIn {
+                                // Navigate to ForecastView after successful login
+                                router.navigate(to: .forecast)
+                            }
                         }
                     },
                     isDisabled: email.isEmpty || password.isEmpty,

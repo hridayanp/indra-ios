@@ -7,29 +7,32 @@
 
 import Foundation
 
-struct ForecastPrev: Identifiable, Decodable {
-    let dob: String
-    let address: String
-    let pin: Int
-    let district: String
-    let state: String
-    let email: String
-    let id: Int
-    let phone: String
-    let name: String
-    let locationId: Int
-    let locationName: String
-    let gender: String
+// Forecast will include both 'data' and 'stats'
+struct Forecast: Identifiable {
+    let id = UUID() // Unique identifier
+    let data: [ForecastData]
+    let stats: [String: ForecastStats]
 }
 
-
-struct Forecast: Identifiable {
+// ForecastData will represent a specific forecast object with date, time, and info
+struct ForecastData: Identifiable {
     let id = UUID() // Unique identifier
     let date: String
     let time: String
-    let info: [ForecastInfo]
+    let info: [ForecastInfo] // Information about the forecast for the given date/time
 }
 
+// ForecastStats will represent the statistics for a particular date (avg temperature, humidity, etc.)
+struct ForecastStats: Codable {
+    let avgTemperature: String
+    let avgHumidity: String
+    let avgPressure: String
+    let avgRainfall: String
+    let avgWindSpeed: String
+    let weatherCondition: String
+}
+
+// ForecastInfo will hold individual forecast information (like temperature, humidity, etc.)
 struct ForecastInfo {
     let type: String
     let label: String

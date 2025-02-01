@@ -38,21 +38,19 @@ class AuthViewModel: ObservableObject {
         try? await Task.sleep(nanoseconds: 3_000_000_000)
         
         do {
-            let user = try await AuthService.shared.login(email: email, password: password)
-            self.user = user
-            print("Logged IN: \(user)")
-            
-            // Store the user's access token in the Keychain
-            storeAccessToken(user.accessToken)
-            
-            // Store user details in UserDefaults
-            storeUserDetails(user)
+//            let user = try await AuthService.shared.login(email: email, password: password)
+//            self.user = user
+//            print("Logged IN: \(user)")
+//            
+//            // Store the user's access token in the Keychain
+//            storeAccessToken(user.accessToken)
+//            
+//            // Store user details in UserDefaults
+//            storeUserDetails(user)
             isLoggedIn = true  // Set to true when login is successful
             
             
             isLoading = false
-            
-            
         }
         catch {
             errorMessage = error.localizedDescription

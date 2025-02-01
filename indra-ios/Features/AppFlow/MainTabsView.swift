@@ -14,7 +14,7 @@ struct MainTabView: View {
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(named: "PrimaryBG") // #0B1D29
+        appearance.backgroundColor = UIColor(Color(hex: "#0B1D29") ) // #0B1D29
         appearance.stackedItemSpacing = 4  // Adjust spacing between icon & text
         
         UITabBar.appearance().standardAppearance = appearance
@@ -44,7 +44,7 @@ struct MainTabView: View {
                 }
         }
         .accentColor(.white) // Selected tab color
-        .background(Color("PrimaryBG").ignoresSafeArea()) // Background color
+        .background(Color(hex: "#0B1D29").ignoresSafeArea()) // Background color
     }
 }
 

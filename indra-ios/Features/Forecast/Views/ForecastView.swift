@@ -48,7 +48,7 @@ struct ForecastView: View {
                     
                     Spacer()
                 }
-                .navigationTitle("Today's Forecast")
+                
                 .onAppear {
                     // Ensuring data is loaded when the view appears
                     viewModel.loadDummyData()

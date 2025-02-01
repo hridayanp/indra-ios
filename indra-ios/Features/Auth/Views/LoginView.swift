@@ -9,8 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email: String = "hridayan@misteo.co"
+    @State private var password: String = "gf@jhfYOZ#ger"
+    
+    @StateObject private var viewModel = AuthViewModel()
     
     var body: some View {
         BaseView {
@@ -19,16 +21,31 @@ struct LoginView: View {
                     .font(.title)
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
+                
                 CustomTextField(placeholder: "Email", text: $email, keyboardType: .emailAddress)
                 CustomTextField(placeholder: "Password", text: $password, isSecureTextEntry: true)
                 
-                Spacer()
-                
-                CustomButton(title: "Login", type: .primary) {
-                    print("Pressed")
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.system(size: 18, weight: .bold))
                 }
                 
+                
+                
+                Spacer()
+                
+                CustomButton(
+                    title: "Login",
+                    type: .primary,
+                    action: {
+                        Task {
+                            await viewModel.login(email: email, password: password)
+                        }
+                    },
+                    isDisabled: email.isEmpty || password.isEmpty,
+                    isLoading: viewModel.isLoading
+                )
                 
             }.padding()
         }
@@ -36,6 +53,6 @@ struct LoginView: View {
     }
 }
 
-//#Preview {
-//    LoginView()
-//}
+#Preview {
+    LoginView()
+}

@@ -17,14 +17,24 @@ class AuthViewModel: ObservableObject {
     @Published var isOtpScreenVisible: Bool = false // Global state to control OTP screen visibility
     @Published var otp: String = ""
     
-    func login() async {
+    func login(email: String, password: String) async {
+        // Validate email before proceeding
+        guard isValidEmail(email) else {
+            DispatchQueue.main.async {
+                self.errorMessage = "Invalid email"
+            }
+            return
+        }
         isLoading = true
         errorMessage = nil
+        
+        // Introduce a 3-second delay
+        try? await Task.sleep(nanoseconds: 3_000_000_000)
         
         do {
             let user = try await AuthService.shared.login(email: email, password: password)
             self.user = user
-            print("Logged IN: \(user.email)")
+            print("Logged IN: \(user)")
             isLoading = false
         }
         catch {
@@ -32,5 +42,12 @@ class AuthViewModel: ObservableObject {
             isLoading = false
         }
         
+    }
+    
+    
+    // Email validation function
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = #"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"#
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
 }

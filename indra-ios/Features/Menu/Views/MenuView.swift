@@ -11,18 +11,18 @@ import SwiftUI
 struct MenuView: View {
     var body: some View {
         ZStack {
-            // Background color for NavigationView
+            
             Color(hex: "#0B1D29")
-                .edgesIgnoringSafeArea(.all) // Ensure full background coverage
+                .edgesIgnoringSafeArea(.all)
             
             NavigationView {
-                VStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 20) {
                     // Title
                     Text("Menu")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .padding(.top, 20) // Adds spacing from the top
+                        .padding(.top, 20)
                     
                     // Card for News
                     NavigationLink(
@@ -42,14 +42,14 @@ struct MenuView: View {
                             CardView(title: "Profile", icon: "person.fill")
                         }
                     
-                    Spacer() // Pushes content to take full height
+                    Spacer()
                 }
                 .frame(maxHeight: .infinity)
                 .padding(.horizontal, 16)
-                .background(Color(hex: "#0B1D29")) // Apply the background inside NavigationView too
-                .navigationBarHidden(true) // Hide the default navigation bar
+                .background(Color(hex: "#0B1D29"))
+                .navigationBarHidden(true)
             }
-            .navigationViewStyle(StackNavigationViewStyle()) // Proper behavior on iPads
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

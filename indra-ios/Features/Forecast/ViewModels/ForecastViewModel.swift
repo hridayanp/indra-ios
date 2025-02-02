@@ -45,7 +45,7 @@ class ForecastViewModel: ObservableObject {
     ]
     
     let forecastData: [ForecastData] = [
-        ForecastData(date: "2025/01/31", time: "2025-01-31T00:00:00Z", info: [
+        ForecastData(date: "2025/01/02", time: "2025-01-02T00:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "29", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "59", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1023", unit: "hPa"),
@@ -54,7 +54,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "SE", unit: "°")
         ]),
         
-        ForecastData(date: "2025/01/31", time: "2025-01-31T01:00:00Z", info: [
+        ForecastData(date: "2025/01/02", time: "2025-01-02T01:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "30", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "65", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1024", unit: "hPa"),
@@ -63,7 +63,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "S", unit: "°")
         ]),
         
-        ForecastData(date: "2025/02/01", time: "2025-02-01T00:00:00Z", info: [
+        ForecastData(date: "2025/02/02", time: "2025-02-02T02:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "27", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "63", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1015", unit: "hPa"),
@@ -72,7 +72,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "NE", unit: "°")
         ]),
         
-        ForecastData(date: "2025/02/01", time: "2025-02-01T01:00:00Z", info: [
+        ForecastData(date: "2025/02/02", time: "2025-02-02T03:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "28", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "62", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1016", unit: "hPa"),

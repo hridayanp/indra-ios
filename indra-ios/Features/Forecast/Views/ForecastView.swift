@@ -5,58 +5,95 @@ struct ForecastView: View {
     @EnvironmentObject var router: AppRouter
     
     var body: some View {
-        BaseView {
-            ScrollView { // Make the whole view scrollable
-                VStack(alignment: .leading, spacing: 16) {
-                    
-                    // Glassmorphic "Today" Forecast Section with Auto-Sized Background
-                    ZStack {
-                        GlassmorphicBackground()
-                            .padding(.horizontal, 16) // Adds spacing from screen edges
+        BaseView(weatherCondition: viewModel.getTodaysStats()?.weatherCondition) {
+            ScrollView(showsIndicators: false) {
+                if let todayStats = viewModel.getTodaysStats() {
+                    VStack(spacing: 10) {
                         
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Today")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .padding(.leading, 10)
-                            
-                            // ScrollView wrapped inside the glassmorphic background
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 10) {
-                                    ForEach(viewModel.getTodaysForecast()) { forecast in
-                                        ForecastVerticalCardView(forecast: forecast)
-                                    }
-                                }
-                                .padding(.leading, 10)
-                            }
-                        }
-                        .padding(16) // Adds padding inside glassmorphic card
-                    }
-                    .fixedSize(horizontal: false, vertical: true) // Ensures glassmorphic bg only wraps content
-                    
-                    // TODAY STATS SECTION
-                    if let todayStats = viewModel.getTodaysStats() {
-                        StatsView(stats: todayStats)
-                            .padding(.top, 16)
-                        
-                    } else {
-                        Text("No data available for today's stats")
+                        Text(todayStats.avgTemperature)
+                            .font(.system(size: 70, weight: .bold))
                             .foregroundColor(.white)
-                            .padding()
+                            .multilineTextAlignment(.leading)
+                        
+                        Text(todayStats.weatherCondition.replacingOccurrences(of: "_", with: " "))
+                            .font(.system(size: 24, weight: .regular))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        
+                        
+                        HStack {
+                            Text("\(todayStats.avgRainfall)")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                            
+                            Text("\(todayStats.avgWindSpeed)")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: 200)
                     }
+                    .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height * 0.2)
+                    .background(Color.clear)
                     
-                    Spacer()
+                    
+                } else {
+                    Text("No data available for today's stats")
+                        .foregroundColor(.white)
+                        .padding()
                 }
                 
-                .onAppear {
-                    // Ensuring data is loaded when the view appears
-                    viewModel.loadDummyData()
+                
+                ZStack {
+                    GlassmorphicBackground()
+                        .padding(.horizontal, 16)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Today")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                        
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(viewModel.getTodaysForecast()) { forecast in
+                                    ForecastVerticalCardView(forecast: forecast)
+                                }
+                            }
+                            .padding(.leading, 10)
+                        }
+                    }
+                    .padding(16)
                 }
+                .fixedSize(horizontal: false, vertical: true)
+
+                if let todayStats = viewModel.getTodaysStats() {
+                    StatsView(stats: todayStats)
+                } else {
+                    Text("No data available for today's stats")
+                        .foregroundColor(.white)
+                        .padding()
+                }
+                
             }
+            .padding(.vertical, 20)
+            
         }
+        
+        .onAppear {
+            viewModel.loadDummyData()
+        }
+        
     }
+        
+        
 }
+
+
+
 
 #Preview {
     ForecastView()
@@ -65,21 +102,18 @@ struct ForecastView: View {
 // MARK: - Glassmorphic Background
 struct GlassmorphicBackground: View {
     var body: some View {
-        RoundedRectangle(cornerRadius: 16)
+        RoundedRectangle(cornerRadius: 8)
             .fill(Color.clear) // Fully transparent background
             .background(
                 BlurView(style: .regular) // Subtle blur effect for frosted glass look
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.white.opacity(0.15), lineWidth: 1) // Softer border for visual separation
             )
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
-
-
-
 
 
 // MARK: - Helper Functions

@@ -15,10 +15,11 @@ struct AuthView: View {
     var body: some View {
         BaseView {
             VStack(spacing: 20) {
-                Text("Weather App")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
+                Image("indra-logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 250)
+                    .foregroundColor(.white)
                 
                 CustomButton(title: "Login", type: .primary) {
                     router.navigate(to: .authSelection(.login))
@@ -31,7 +32,7 @@ struct AuthView: View {
                 
                 
                 Button("Continue as Guest") {
-                    router.navigate(to: .forecast)
+                    router.navigate(to: .mainTabs)
                 }
                 .foregroundColor(.blue)
             }
@@ -41,6 +42,6 @@ struct AuthView: View {
     }
 }
 
-//#Preview {
-//    AuthView()
-//}
+#Preview {
+    AuthView()
+}

@@ -19,21 +19,21 @@ struct SplashView: View {
                     .transition(.opacity) // Fade in main view smoothly
             } else {
                 VStack {
-                    Image(systemName: "cloud.sun.fill") // Replace with your app logo
+                    Image("indra-logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 300, height: 100)
                         .foregroundColor(.white)
-                        .scaleEffect(scaleEffect) // Scale effect
-                        .opacity(fadeOut ? 0 : 1) // Fade-out effect
-                    
-                    Text("Indra Weather")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
                         .scaleEffect(scaleEffect)
                         .opacity(fadeOut ? 0 : 1)
+                    
+//                    Text("Indra Weather")
+//                        .font(.largeTitle)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .padding(.top, 10)
+//                        .scaleEffect(scaleEffect)
+//                        .opacity(fadeOut ? 0 : 1)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "#0B1D29"))

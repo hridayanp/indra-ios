@@ -9,14 +9,20 @@ import SwiftUI
 
 struct AlertsView: View {
     var body: some View {
-        VStack {
-            Text("Alerts")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            Spacer()
+        BaseView {
+            VStack {
+                Text("Alerts")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Alerts")
         }
-        .padding()
-        .navigationTitle("Alerts")
+        
+        
+        
     }
 }
 

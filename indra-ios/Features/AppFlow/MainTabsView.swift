@@ -44,7 +44,8 @@ struct MainTabView: View {
                 }
         }
         .accentColor(.white) // Selected tab color
-        .background(Color(hex: "#0B1D29").ignoresSafeArea()) // Background color
+        .background(Color(hex: "#0B1D29")) // Background color
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

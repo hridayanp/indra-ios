@@ -20,7 +20,6 @@ struct BaseView<Content: View>: View {
             } else {
                 Color(hex: "#0B1D29") // Default background
                     .edgesIgnoringSafeArea(.all)
-                    .zIndex(0)
             }
             
             content

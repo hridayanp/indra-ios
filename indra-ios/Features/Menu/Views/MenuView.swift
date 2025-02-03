@@ -91,34 +91,38 @@ struct CardView: View {
 struct ContentView: View {
     var content: String
     @Environment(\.dismiss) var dismiss
+    @State private var isInDetailView = false
     
     var body: some View {
         BaseView {
             VStack {
-                Text(content)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
+                
                 
                 Spacer()
                 
                 if content == "News" {
-                    NewsView()
+                    NewsView(isInDetailView: $isInDetailView)
                 }
             }
-            .navigationBarTitle(content, displayMode: .inline)
             .navigationBarBackButtonHidden(true) // Hide the default back button
             
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "arrow.left.circle.fill") // Left arrow icon
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white) // Icon color
-                            .padding(10)
+                if !isInDetailView { // Show toolbar only when not in detail view
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        HStack {
+                            Button(action: {
+                                dismiss()
+                            }) {
+                                Image(systemName: "arrow.left.circle.fill") // Left arrow icon
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.white)
+                            }
+                            Text(content)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
                     }
                 }
             }

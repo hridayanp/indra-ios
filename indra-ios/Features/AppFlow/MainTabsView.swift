@@ -37,7 +37,7 @@ struct MainTabView: View {
                         .labelStyle(VerticalLabelStyle())
                 }
             
-            MenuView()
+            MenuView(authViewModel: AuthViewModel())
                 .tabItem {
                     Label("Settings", systemImage: "square.grid.2x2")
                         .labelStyle(VerticalLabelStyle())

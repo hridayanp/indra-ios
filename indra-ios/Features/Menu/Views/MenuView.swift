@@ -9,6 +9,8 @@ import SwiftUI
 
 // Main Menu View with Cards
 struct MenuView: View {
+    @ObservedObject var authViewModel: AuthViewModel
+    
     var body: some View {
         ZStack {
             
@@ -43,6 +45,27 @@ struct MenuView: View {
                         }
                     
                     Spacer()
+                    
+                    VStack {
+                        // Other UI elements
+                        Text(authViewModel.isLoggedIn ? "You are logged in" : "Logged out")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                        
+                        // Logout button
+                        Button(action: {
+                            authViewModel.logout()
+                        }) {
+                            Text("Logout")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.red)
+                                .cornerRadius(8)
+                        }
+                        .padding(.top, 20)
+                    }
+                    .padding()
                 }
                 .frame(maxHeight: .infinity)
                 .padding(.horizontal, 16)
@@ -135,5 +158,5 @@ struct ContentView: View {
 
 
 #Preview {
-    MenuView()
+    MenuView(authViewModel: AuthViewModel())
 }

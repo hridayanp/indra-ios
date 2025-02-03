@@ -7,6 +7,7 @@
 
 import Foundation
 import Security
+import KeychainAccess
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -18,10 +19,30 @@ class AuthViewModel: ObservableObject {
     @Published var isOtpScreenVisible: Bool = false // Global state to control OTP screen visibility
     @Published var otp: String = ""
     
+    private let keychain = Keychain(service: "com.hphukan.indra-ios")
+    
     // Published property to track login success
-    @Published var isLoggedIn: Bool = false
+//    @Published var isLoggedIn: Bool = false
+
+    @Published var isLoggedIn: Bool = false {
+        didSet {
+            // Persist login state in UserDefaults
+            UserDefaults.standard.set(isLoggedIn, forKey: "isLoggedIn")
+        }
+    }
     
     var router: AppRouter?
+    
+    init() {
+        // Check if access token exists in Keychain
+        if getAccessToken() != nil {
+            self.isLoggedIn = true
+            router?.navigate(to: .mainTabs)
+        } else {
+            self.isLoggedIn = false
+            router?.navigate(to: .authSelection(.login))
+        }
+    }
     
     func login(email: String, password: String) async {
         // Validate email before proceeding
@@ -43,8 +64,8 @@ class AuthViewModel: ObservableObject {
 //            print("Logged IN: \(user)")
 //            
 //            // Store the user's access token in the Keychain
-//            storeAccessToken(user.accessToken)
-//            
+            storeAccessToken("token")
+//
 //            // Store user details in UserDefaults
 //            storeUserDetails(user)
             isLoggedIn = true  // Set to true when login is successful
@@ -138,5 +159,21 @@ class AuthViewModel: ObservableObject {
             accessToken: accessToken,
             refreshToken: refreshToken
         )
+    }
+    
+    /// Logout function to remove user data from Keychain and notify the UI to go back to the login screen
+    func logout() {
+        // Clear user data from Keychain
+        do {
+            try keychain.remove("accessToken")
+            // Immediately update the logged-in status
+            DispatchQueue.main.async {
+                self.isLoggedIn = false
+                self.router?.navigate(to: .authSelection(.login))
+            }
+        } catch {
+            print("Error removing access token from Keychain: \(error.localizedDescription)")
+        }
+        
     }
 }

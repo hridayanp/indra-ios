@@ -1,10 +1,13 @@
 import SwiftUI
 import Combine
 
+
 class MenuViewModel: ObservableObject {
     @Published var newsItems: [NewsItem] = []
     @Published var isLoading = false
     @Published var errorMessage: String? = nil
+    
+   
     
     init() {
         loadNewsData() // Directly load the static data when the view model is initialized
@@ -51,4 +54,8 @@ class MenuViewModel: ObservableObject {
             self.errorMessage = "Failed to load static news data"
         }
     }
+    
+    
+    
+    
 }

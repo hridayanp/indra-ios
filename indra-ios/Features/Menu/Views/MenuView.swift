@@ -97,11 +97,14 @@ struct ContentView: View {
         BaseView {
             VStack {
                 
-                
                 Spacer()
-                
+            
                 if content == "News" {
                     NewsView(isInDetailView: $isInDetailView)
+                }
+                
+                if content == "Profile" {
+                    ProfileView(isInDetailView: $isInDetailView)
                 }
             }
             .navigationBarBackButtonHidden(true) // Hide the default back button

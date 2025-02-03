@@ -12,6 +12,7 @@ struct CustomTextField: View {
     var text: Binding<String>
     var isSecureTextEntry: Bool = false
     var keyboardType: UIKeyboardType = .default
+    var isEditable: Bool = true
     
     var body: some View {
         VStack {
@@ -42,6 +43,8 @@ struct CustomTextField: View {
                     .keyboardType(keyboardType)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+                    .disabled(!isEditable)
+                    .opacity(isEditable ? 1.0 : 0.6)
                     .placeholder(when: text.wrappedValue.isEmpty) {
                         Text(placeholder)
                             .foregroundColor(Color(.white))

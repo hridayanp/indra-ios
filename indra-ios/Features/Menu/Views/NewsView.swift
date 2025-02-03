@@ -123,6 +123,6 @@ struct NewsDetailView: View {
     }
 }
 
-//#Preview {
-//    NewsView(isInDetailView: .constant(false))
-//}
+#Preview {
+    NewsView(isInDetailView: .constant(false))
+}

@@ -6,119 +6,124 @@ struct ForecastView: View {
     
     var body: some View {
         BaseView(weatherCondition: viewModel.getTodaysStats()?.weatherCondition) {
-            ScrollView(showsIndicators: false) {
-                if let todayStats = viewModel.getTodaysStats() {
-                    VStack(spacing: 10) {
-                        
-                        Text(todayStats.avgTemperature)
-                            .font(.system(size: 70, weight: .bold))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.leading)
-                        
-                        Text(todayStats.weatherCondition.replacingOccurrences(of: "_", with: " "))
-                            .font(.system(size: 24, weight: .regular))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                        
-                        
-                        HStack {
-                            Text("\(todayStats.avgRainfall)")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Spacer()
-                            
-                            Text("\(todayStats.avgWindSpeed)")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
-                        }
-                        .frame(maxWidth: 200)
-                    }
-                    .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height * 0.2)
-                    .background(Color.clear)
-                    .padding(.top, 50)
-                    
-                    
-                } else {
-                    Text("No data available for today's stats")
-                        .foregroundColor(.white)
-                        .padding()
-                }
+            VStack(spacing: 0) {
                 
+                HeaderView().padding(.top, 40)
                 
-                ZStack {
-                    GlassmorphicBackground()
-                        .padding(.horizontal, 16)
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Today")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
-                        
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            if !viewModel.getTodaysForecast().isEmpty {
-                                HStack(spacing: 10) {
-                                    ForEach(viewModel.getTodaysForecast()) { forecast in
-                                        ForecastVerticalCardView(forecast: forecast)
-                                    }
-                                }
-                                .padding(.leading, 10)
-                            } else {
-                                // Display fallback message if the forecast is empty
-                                Text("No Data Available for Today's Forecast")
-                                    .font(.subheadline)
-                                    .foregroundColor(.white)
-                                    .padding(.leading, 10)
-                            }
-                        }
-                    }
-                    .padding(16)
-                }
-                .fixedSize(horizontal: false, vertical: true)
-                
-                ZStack {
-                    GlassmorphicBackground()
-                        .padding(.horizontal, 16)
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("7 Day Forecast")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
-                        
+                ScrollView(showsIndicators: false) {
+                    if let todayStats = viewModel.getTodaysStats() {
                         VStack(spacing: 10) {
-                            ForEach(viewModel.weeklyForecastData(viewModel.forecastStats), id: \.date) { summary in
-                                ForecastHorizontalCardView(
-                                    icon: "calendar",
-                                    title: "\(summary.day)",
-                                    value1: summary.avgTemperature,
-                                    value2: summary.avgHumidity
-                                )
+                            
+                            Text("\(formatValue(todayStats.avgTemperature)) °C")
+                                .font(.system(size: 70, weight: .bold))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                            
+                            Text(todayStats.weatherCondition.replacingOccurrences(of: "_", with: " "))
+                                .font(.system(size: 24, weight: .regular))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                            
+                            
+                            HStack {
+                                Text("\((todayStats.avgRainfall))")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(.white)
+                                
+                                Spacer()
+                                
+                                Text("\(todayStats.avgWindSpeed)")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(.white)
+                            }
+                            .frame(maxWidth: 200)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height * 0.2)
+                        .background(Color.clear)
+                        .padding(.top, 10)
+                        
+                        
+                    } else {
+                        Text("No data available for today's stats")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    
+                    ZStack {
+                        GlassmorphicBackground()
+                            .padding(.horizontal, 16)
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Today")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.leading, 10)
+                            
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                if !viewModel.getTodaysForecast().isEmpty {
+                                    HStack(spacing: 10) {
+                                        ForEach(viewModel.getTodaysForecast()) { forecast in
+                                            ForecastVerticalCardView(forecast: forecast)
+                                        }
+                                    }
+                                    .padding(.leading, 10)
+                                } else {
+                                    // Display fallback message if the forecast is empty
+                                    Text("No Data Available for Today's Forecast")
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .padding(.leading, 10)
+                                }
                             }
                         }
-                        .padding(.horizontal, 12)
+                        .padding(16)
                     }
-                    .padding(16)
+                    .fixedSize(horizontal: false, vertical: true)
+                    
+                    ZStack {
+                        GlassmorphicBackground()
+                            .padding(.horizontal, 16)
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("7 Day Forecast")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.leading, 10)
+                            
+                            VStack(spacing: 10) {
+                                ForEach(viewModel.weeklyForecastData(viewModel.forecastStats), id: \.date) { summary in
+                                    ForecastHorizontalCardView(
+                                        icon: "calendar",
+                                        title: "\(summary.day)",
+                                        value1: summary.avgTemperature,
+                                        value2: summary.avgHumidity
+                                    )
+                                }
+                            }
+                            .padding(.horizontal, 12)
+                        }
+                        .padding(16)
+                    }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 10)
+                    
+                    if let todayStats = viewModel.getTodaysStats() {
+                        StatsView(stats: todayStats)
+                    } else {
+                        Text("No data available for today's stats")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
                 }
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.top, 10)
-
-                if let todayStats = viewModel.getTodaysStats() {
-                    StatsView(stats: todayStats)
-                } else {
-                    Text("No data available for today's stats")
-                        .foregroundColor(.white)
-                        .padding()
-                }
-                
+                .padding(.vertical, 20)
+                .padding(.horizontal, 10)
+                .padding(.bottom, 50)
             }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 10)
-            
         }
         
         .onAppear {

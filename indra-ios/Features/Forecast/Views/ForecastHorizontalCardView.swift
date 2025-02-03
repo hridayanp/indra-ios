@@ -94,24 +94,6 @@ struct ForecastHorizontalCardView: View {
                 .stroke(Color.white.opacity(0.2), lineWidth: 1.56) // Softer glassmorphic border
         )
     }
-    
-    /// Extracts the numeric value, converts it to a whole number using `ceil`, and returns it as a string.
-    private func formatValue(_ value: String) -> String {
-        let components = value.split(separator: " ") // Split "number unit"
-        if let number = Double(components.first ?? "") {
-            return "\(Int(ceil(number)))" // Convert to whole number
-        }
-        return value // Fallback in case of error
-    }
-    
-    /// Extracts the unit part of the string (e.g., "°C", "km/h").
-    private func getUnit(from value: String) -> String? {
-        let components = value.split(separator: " ") // Split "number unit"
-        if components.count > 1 {
-            return String(components.last ?? "")
-        }
-        return nil
-    }
 }
 
 // MARK: - Preview

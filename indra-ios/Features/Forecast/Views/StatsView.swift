@@ -73,6 +73,53 @@ struct StatsView: View {
     }
 }
 
+//// MARK: - Stat Card View
+//struct StatCard: View {
+//    let icon: String
+//    let title: String
+//    let value: String
+//    
+//    var body: some View {
+//        VStack {
+//            
+//            
+//            // Parameter title and value
+//            VStack(spacing: 8) {
+//                // Icon at the top
+//                Image(systemName: icon)
+//                    .font(.system(size: 24)) // Decrease icon size
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                
+//                // Parameter name (Title)
+//                Text(title)
+//                    .font(.system(size: 15)) // Decrease font size for title
+//                    .fontWeight(.regular)
+//                    .lineSpacing(2)
+//                    .foregroundColor(.white)
+//                
+//                
+//            }
+//            
+//            // Parameter value
+//            Text(value)
+//                .font(.system(size: 18, weight: .medium, design: .default)) // Decrease font size for value
+//                .foregroundColor(.white)
+//                .padding(.vertical, 6)
+//                .frame(maxWidth: .infinity)
+//                .background(Color.clear)
+//        }
+//        .frame(maxWidth: .infinity, minHeight: 100) // Set a fixed height for the card
+//        .background(Color.clear) // No background for card
+//        .cornerRadius(8)
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 8)
+//                .stroke(Color(hex: "#EEEEEE"), lineWidth: 0.5) // Border color
+//        )
+//        
+//    }
+//}
+
 // MARK: - Stat Card View
 struct StatCard: View {
     let icon: String
@@ -81,8 +128,6 @@ struct StatCard: View {
     
     var body: some View {
         VStack {
-            
-            
             // Parameter title and value
             VStack(spacing: 8) {
                 // Icon at the top
@@ -97,8 +142,6 @@ struct StatCard: View {
                     .fontWeight(.regular)
                     .lineSpacing(2)
                     .foregroundColor(.white)
-                
-                
             }
             
             // Parameter value
@@ -110,13 +153,14 @@ struct StatCard: View {
                 .background(Color.clear)
         }
         .frame(maxWidth: .infinity, minHeight: 100) // Set a fixed height for the card
-        .background(Color.clear) // No background for card
+        .background(
+            GlassmorphicBackground() // Apply the Glassmorphic background to each card
+        )
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color(hex: "#EEEEEE"), lineWidth: 0.5) // Border color
         )
-        
     }
 }
 

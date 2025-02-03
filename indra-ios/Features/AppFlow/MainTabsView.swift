@@ -39,7 +39,7 @@ struct MainTabView: View {
             
             MenuView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label("Settings", systemImage: "square.grid.2x2")
                         .labelStyle(VerticalLabelStyle())
                 }
         }

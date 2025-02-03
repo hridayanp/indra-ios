@@ -58,12 +58,20 @@ struct ForecastView: View {
                         
                         
                         ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 10) {
-                                ForEach(viewModel.getTodaysForecast()) { forecast in
-                                    ForecastVerticalCardView(forecast: forecast)
+                            if !viewModel.getTodaysForecast().isEmpty {
+                                HStack(spacing: 10) {
+                                    ForEach(viewModel.getTodaysForecast()) { forecast in
+                                        ForecastVerticalCardView(forecast: forecast)
+                                    }
                                 }
+                                .padding(.leading, 10)
+                            } else {
+                                // Display fallback message if the forecast is empty
+                                Text("No Data Available for Today's Forecast")
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
+                                    .padding(.leading, 10)
                             }
-                            .padding(.leading, 10)
                         }
                     }
                     .padding(16)
@@ -80,6 +88,7 @@ struct ForecastView: View {
                 
             }
             .padding(.vertical, 20)
+            .padding(.horizontal, 10)
             
         }
         
@@ -97,22 +106,6 @@ struct ForecastView: View {
 
 #Preview {
     ForecastView()
-}
-
-// MARK: - Glassmorphic Background
-struct GlassmorphicBackground: View {
-    var body: some View {
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color.clear) // Fully transparent background
-            .background(
-                BlurView(style: .regular) // Subtle blur effect for frosted glass look
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.white.opacity(0.15), lineWidth: 1) // Softer border for visual separation
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-    }
 }
 
 

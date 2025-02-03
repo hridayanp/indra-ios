@@ -15,6 +15,7 @@ struct BaseView<Content: View>: View {
             if let condition = weatherCondition {
                 Image(getBackgroundImage(for: condition))
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all) // Makes sure the image covers the full screen
                     .zIndex(0) // Ensures the background is at the bottom
             } else {
@@ -49,7 +50,7 @@ struct BaseView<Content: View>: View {
             return isNight ? "clear-night" : "cloudy-day"
         case "overcast clouds":
             return "cloudy-day"
-        case "mostly sunny":
+        case "mostly sunny", "sunny":
             return "mostly-sunny-day"
         default:
             return isNight ? "clear-night" : "cloudy-day"
@@ -68,7 +69,7 @@ struct BaseView<Content: View>: View {
 }
 
 #Preview {
-    BaseView(weatherCondition: "thunderstorm") {
+    BaseView(weatherCondition: "sunny") {
         ScrollView {
             VStack(spacing: 10) {
                 

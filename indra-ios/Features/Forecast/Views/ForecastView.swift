@@ -36,6 +36,7 @@ struct ForecastView: View {
                     }
                     .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height * 0.2)
                     .background(Color.clear)
+                    .padding(.top, 50)
                     
                     
                 } else {
@@ -77,6 +78,34 @@ struct ForecastView: View {
                     .padding(16)
                 }
                 .fixedSize(horizontal: false, vertical: true)
+                
+                ZStack {
+                    GlassmorphicBackground()
+                        .padding(.horizontal, 16)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("7 Day Forecast")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                        
+                        VStack(spacing: 10) {
+                            ForEach(viewModel.weeklyForecastData(viewModel.forecastStats), id: \.date) { summary in
+                                ForecastHorizontalCardView(
+                                    icon: "calendar",
+                                    title: "\(summary.day)",
+                                    value1: summary.avgTemperature,
+                                    value2: summary.avgHumidity
+                                )
+                            }
+                        }
+                        .padding(.horizontal, 12)
+                    }
+                    .padding(16)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, 10)
 
                 if let todayStats = viewModel.getTodaysStats() {
                     StatsView(stats: todayStats)

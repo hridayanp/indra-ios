@@ -39,3 +39,11 @@ struct ForecastInfo {
     let value: String
     let unit: String
 }
+
+struct ForecastWeeklySummary: Identifiable {
+    let id = UUID() // Unique identifier
+    let date: String
+    let day: String
+    let avgTemperature: String
+    let avgHumidity: String
+}

@@ -20,7 +20,7 @@ struct StatsView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 8) {
             // Dynamically creating rows based on the available stats
             let statKeys = Array(statTitles.keys)
             

@@ -64,11 +64,11 @@ struct StatsView: View {
             }
         }
         //.background(Color(hex: "#3A61AD")) // Card background color
-        .background(
-            BlurView(style: .regular)
-                .cornerRadius(12)
-                .opacity(0.2)
-        )
+//        .background(
+//            BlurView(style: .regular)
+//                .cornerRadius(12)
+//                .opacity(0.2)
+//        )
         .padding()
     }
 }

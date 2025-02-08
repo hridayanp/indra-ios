@@ -34,7 +34,7 @@ struct CustomDropdown: View {
                     .foregroundColor(.white)
                     .padding(.trailing, 10)
             }
-            .frame(maxWidth: .infinity, minHeight: 60)
+            .frame(maxWidth: .infinity, minHeight: 50)
             .background(Color.clear) // Transparent background
             .cornerRadius(8)
             .overlay(

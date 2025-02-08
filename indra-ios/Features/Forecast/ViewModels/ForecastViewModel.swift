@@ -9,7 +9,7 @@ class ForecastViewModel: ObservableObject {
     
     
     let forecastStats: [String: ForecastStats] = [
-        "2025/02/03": ForecastStats(
+        "2025/02/08": ForecastStats(
             avgTemperature: "28.46 °C",
             avgHumidity: "73.54 %",
             avgPressure: "1010.54 hPa",
@@ -17,7 +17,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "13.00 km/h",
             weatherCondition: "Heavy_Rain"
         ),
-        "2025/02/04": ForecastStats(
+        "2025/02/09": ForecastStats(
             avgTemperature: "27.50 °C",
             avgHumidity: "72.00 %",
             avgPressure: "1012.00 hPa",
@@ -25,7 +25,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "10.00 km/h",
             weatherCondition: "Clear"
         ),
-        "2025/02/05": ForecastStats(
+        "2025/02/10": ForecastStats(
             avgTemperature: "29.00 °C",
             avgHumidity: "70.00 %",
             avgPressure: "1011.50 hPa",
@@ -33,7 +33,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "12.00 km/h",
             weatherCondition: "Partly_Cloudy"
         ),
-        "2025/02/06": ForecastStats(
+        "2025/02/11": ForecastStats(
             avgTemperature: "30.50 °C",
             avgHumidity: "65.00 %",
             avgPressure: "1013.00 hPa",
@@ -41,7 +41,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "15.00 km/h",
             weatherCondition: "Sunny"
         ),
-        "2025/02/07": ForecastStats(
+        "2025/02/12": ForecastStats(
             avgTemperature: "30.50 °C",
             avgHumidity: "65.00 %",
             avgPressure: "1013.00 hPa",
@@ -49,7 +49,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "15.00 km/h",
             weatherCondition: "Sunny"
         ),
-        "2025/02/08": ForecastStats(
+        "2025/02/13": ForecastStats(
             avgTemperature: "30.50 °C",
             avgHumidity: "65.00 %",
             avgPressure: "1013.00 hPa",
@@ -57,7 +57,7 @@ class ForecastViewModel: ObservableObject {
             avgWindSpeed: "15.00 km/h",
             weatherCondition: "Sunny"
         ),
-        "2025/02/09": ForecastStats(
+        "2025/02/14": ForecastStats(
             avgTemperature: "30.50 °C",
             avgHumidity: "65.00 %",
             avgPressure: "1013.00 hPa",
@@ -68,7 +68,7 @@ class ForecastViewModel: ObservableObject {
     ]
     
     let forecastData: [ForecastData] = [
-        ForecastData(date: "2025/02/03", time: "2025-01-02T00:00:00Z", info: [
+        ForecastData(date: "2025/02/08", time: "2025-01-02T00:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "29", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "59", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1023", unit: "hPa"),
@@ -77,7 +77,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "SE", unit: "°")
         ]),
         
-        ForecastData(date: "2025/02/03", time: "2025-01-02T01:00:00Z", info: [
+        ForecastData(date: "2025/02/08", time: "2025-01-02T01:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "30", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "65", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1024", unit: "hPa"),
@@ -86,7 +86,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "S", unit: "°")
         ]),
         
-        ForecastData(date: "2025/02/03", time: "2025-02-02T02:00:00Z", info: [
+        ForecastData(date: "2025/02/08", time: "2025-02-02T02:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "27", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "63", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1015", unit: "hPa"),
@@ -95,7 +95,7 @@ class ForecastViewModel: ObservableObject {
             ForecastInfo(type: "wind_dir", label: "Wind Direction", value: "NE", unit: "°")
         ]),
         
-        ForecastData(date: "2025/02/03", time: "2025-02-02T03:00:00Z", info: [
+        ForecastData(date: "2025/02/08", time: "2025-02-02T03:00:00Z", info: [
             ForecastInfo(type: "temperature", label: "Temperature", value: "28", unit: "°C"),
             ForecastInfo(type: "humidity", label: "Humidity", value: "62", unit: "%"),
             ForecastInfo(type: "pressure", label: "Pressure", value: "1016", unit: "hPa"),

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AlertsView: View {
     @AppStorage("location") private var selectedLocation: String = "Select Location"
+
+
     @State private var selectedTab: AlertTab = .alertsSent
+    
+    
     
     enum AlertTab {
         case alertsSent

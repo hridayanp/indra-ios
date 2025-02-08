@@ -20,7 +20,7 @@ struct CustomDropdown: View {
             HStack {
                 // Title Text
                 Text(selectedItem)
-                    .font(.title2)
+                    .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.white)
                     .padding(.leading, 10)
                 
